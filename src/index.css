@@ -1,0 +1,148 @@
+@import url('https://fonts.googleapis.com/css2?family=Bangers&display=swap'); 
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+/* ----------- Reset General ----------- */
+html,
+body,
+#root {
+  width: 100%;
+  height: 100%;
+  min-height: 100vh;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  overflow-x: hidden;
+  background-color: #fff;
+  scroll-behavior: smooth;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}
+
+body {
+  font-family: 'Bangers', cursive;
+  font-style: italic;
+  color: #333;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* ----------- Fondo con imagen para landing ----------- */
+.bg-negocio-img {
+  position: relative;
+  min-height: 100vh;
+  width: 100%;
+  overflow: hidden;
+  background-image: url("/img/fondos.jpg"); /* Asegurate que esté aquí */
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.bg-negocio-img::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.3); /* Overlay oscuro */
+  z-index: 0;
+}
+
+.bg-negocio-img > * {
+  position: relative;
+  z-index: 1;
+}
+
+/* ----------- Resto de estilos ----------- */
+.scrollbar-hide {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+.animate-fade-in-down {
+  animation: fadeInDown 0.6s ease-out forwards;
+}
+
+nav {
+  transition: background-color 0.4s ease, box-shadow 0.4s ease;
+}
+nav a {
+  transition: color 0.3s ease;
+}
+
+.sidebar-hud {
+  position: relative;
+  z-index: 0;
+  overflow: hidden;
+}
+.sidebar-hud::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background: repeating-linear-gradient(
+      0deg,
+      rgba(0, 255, 255, 0.05) 0px,
+      rgba(0, 255, 255, 0.05) 1px,
+      transparent 1px,
+      transparent 20px
+    ),
+    repeating-linear-gradient(
+      90deg,
+      rgba(0, 255, 255, 0.05) 0px,
+      rgba(0, 255, 255, 0.05) 1px,
+      transparent 1px,
+      transparent 20px
+    );
+  animation: grid-move 2s linear infinite;
+  opacity: 0.4;
+}
+
+@keyframes grid-move {
+  0% {
+    background-position: 0 0, 0 0;
+  }
+  100% {
+    background-position: 40px 40px, 40px 40px;
+  }
+}
+
+.sidebar-hud-content {
+  position: relative;
+  z-index: 1;
+}
+.sidebar-dark {
+  background-color: #050a1a;
+  color: #00ffff;
+}
+.sidebar-light {
+  background-color: #fff;
+  color: #000;
+}
+.sidebar-light .sidebar-hud::before {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  .sidebar-hud {
+    width: 100%;
+  }
+}
